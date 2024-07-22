@@ -1,0 +1,4505 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "xxx管理后台API文档",
+        "title": "Admin API",
+        "contact": {
+            "name": "xxx",
+            "url": "http://xxx.com",
+            "email": "xxx@qq.com"
+        },
+        "version": "1.0.0"
+    },
+    "host": "127.0.0.1:10000",
+    "basePath": "/api/v1",
+    "paths": {
+        "/file/download_and_store": {
+            "post": {
+                "description": "下载网络图片并转存",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文件上传"
+                ],
+                "summary": "下载网络图片并转存",
+                "parameters": [
+                    {
+                        "description": "网络图片URL",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ImageUrlUploadReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.UploadFileResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/file/upload_base64_image": {
+            "post": {
+                "description": "上传Base64格式图片",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文件上传"
+                ],
+                "summary": "上传Base64格式图片",
+                "parameters": [
+                    {
+                        "description": "base64格式图片",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.Base64ImageUploadReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.UploadFileResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/file/upload_blob_image": {
+            "post": {
+                "description": "上传blob格式图片",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文件上传"
+                ],
+                "summary": "上传blob格式图片",
+                "parameters": [
+                    {
+                        "description": "blob格式图片",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.Base64ImageUploadReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.UploadFileResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/file/upload_image": {
+            "post": {
+                "description": "上传图片",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文件上传"
+                ],
+                "summary": "上传图片",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "文件",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.UploadFileResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/config/add": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "添加配置",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "配置管理"
+                ],
+                "summary": "添加配置",
+                "parameters": [
+                    {
+                        "description": "配置信息",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysConfigAddReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/config/delete": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "根据id删除配置",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "配置管理"
+                ],
+                "summary": "删除配置",
+                "parameters": [
+                    {
+                        "description": "要删除的配置ID",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysConfigDeleteReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/config/page_query": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "分页查询配置",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "配置管理"
+                ],
+                "summary": "分页查询配置",
+                "parameters": [
+                    {
+                        "description": "配置筛选条件",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysConfigPageQueryReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/definitions/api.PageData"
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "List": {
+                                                            "$ref": "#/definitions/models.SysConfig"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/config/page_query_log": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "分页查询配置日志",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "配置管理"
+                ],
+                "summary": "分页查询配置日志",
+                "parameters": [
+                    {
+                        "description": "配置日志筛选条件",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysConfigLogPageQueryReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/definitions/api.PageData"
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "List": {
+                                                            "$ref": "#/definitions/models.SysConfigLog"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/config/update": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "根据id修改配置信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "配置管理"
+                ],
+                "summary": "修改配置",
+                "parameters": [
+                    {
+                        "description": "配置信息",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysConfigUpdateReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/dict/add": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "添加字典",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "字典管理"
+                ],
+                "summary": "添加字典",
+                "parameters": [
+                    {
+                        "description": "字典信息",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysDictAddReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/dict/delete": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "根据id删除字典",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "字典管理"
+                ],
+                "summary": "删除字典",
+                "parameters": [
+                    {
+                        "description": "要删除的字典ID",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysDictDeleteReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/dict/item/add": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "添加字典项",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "字典管理"
+                ],
+                "summary": "添加字典项",
+                "parameters": [
+                    {
+                        "description": "字典项",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysDictItemAddReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/dict/item/batch_get_by_names": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "根据字典名称数组获取所有项目",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "字典管理"
+                ],
+                "summary": "根据字典名称数组获取所有项目",
+                "parameters": [
+                    {
+                        "description": "字典名称数组",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysDictGetItemsReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "additionalProperties": {
+                                                "type": "array",
+                                                "items": {
+                                                    "$ref": "#/definitions/models.SysDictItem"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/dict/item/get_by_name": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "根据字典名称获取所有项目",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "字典管理"
+                ],
+                "summary": "根据字典名称获取所有项目",
+                "parameters": [
+                    {
+                        "description": "字典名称",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysDictGetItemsReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.SysDictGetItemsResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/dict/item/page_query": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "分页查询字典",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "字典管理"
+                ],
+                "summary": "分页查询字典",
+                "parameters": [
+                    {
+                        "description": "字典筛选条件",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysDictPageQueryReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/definitions/api.PageData"
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "List": {
+                                                            "$ref": "#/definitions/models.SysDict"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/dict/item/update": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "修改字典项",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "字典管理"
+                ],
+                "summary": "修改字典项",
+                "parameters": [
+                    {
+                        "description": "字典项",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysDictItemUpdateReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/dict/page_query": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "分页查询字典",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "字典管理"
+                ],
+                "summary": "分页查询字典",
+                "parameters": [
+                    {
+                        "description": "字典筛选条件",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysDictPageQueryReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/definitions/api.PageData"
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "List": {
+                                                            "$ref": "#/definitions/models.SysDict"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/dict/update": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "根据id修改字典信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "字典管理"
+                ],
+                "summary": "修改字典",
+                "parameters": [
+                    {
+                        "description": "字典信息",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysDictUpdateReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/permission/add": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "添加权限",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "权限管理"
+                ],
+                "summary": "添加权限",
+                "parameters": [
+                    {
+                        "description": "权限信息",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysPermissionAddReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/permission/batch_add": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "批量添加权限",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "权限管理"
+                ],
+                "summary": "批量添加权限",
+                "parameters": [
+                    {
+                        "description": "权限筛选条件",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysPermissionBatchAddReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/permission/batch_import": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "批量导入权限",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "权限管理"
+                ],
+                "summary": "批量导入权限",
+                "parameters": [
+                    {
+                        "description": "权限树",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysPermissionImportReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/permission/bind_users": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "以树形结构呈现所有权限",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "权限管理"
+                ],
+                "summary": "获取权限树",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dto.SysPermissionTree"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/permission/delete": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "根据id删除权限",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "权限管理"
+                ],
+                "summary": "删除权限",
+                "parameters": [
+                    {
+                        "description": "要删除的权限ID",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysPermissionDeleteReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/permission/page_query": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "分页查询权限",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "权限管理"
+                ],
+                "summary": "分页查询权限",
+                "parameters": [
+                    {
+                        "description": "权限筛选条件",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysPermissionPageQueryReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/definitions/api.PageData"
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "List": {
+                                                            "$ref": "#/definitions/models.SysPermission"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/permission/update": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "根据id修改权限信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "权限管理"
+                ],
+                "summary": "修改权限",
+                "parameters": [
+                    {
+                        "description": "权限信息",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysPermissionUpdateReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/role/add": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "添加角色",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "角色管理"
+                ],
+                "summary": "添加角色",
+                "parameters": [
+                    {
+                        "description": "角色信息",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysRoleAddReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/role/bind_permissions": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "批量关联权限给角色，会覆盖之前角色拥有的权限",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "角色管理"
+                ],
+                "summary": "给角色授予权限",
+                "parameters": [
+                    {
+                        "description": "角色id和权限id数组",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysRoleBindPermissionsReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/role/bind_users": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "角色关联用户，关联后用户拥有该角色和该角色的所有权限",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "角色管理"
+                ],
+                "summary": "授权角色给用户",
+                "parameters": [
+                    {
+                        "description": "需要绑定的角色id和用户id数组",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysRoleBindPermissionsReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/role/delete": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "根据id删除角色",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "角色管理"
+                ],
+                "summary": "删除角色",
+                "parameters": [
+                    {
+                        "description": "要删除的角色ID",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysRoleDeleteReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/role/get_by_name": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "根据名字获取角色",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "角色管理"
+                ],
+                "summary": "根据名字获取角色",
+                "parameters": [
+                    {
+                        "description": "角色名称",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysRoleGetByNameReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/role/get_permission_tree": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "获取角色拥有的权限树",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "角色管理"
+                ],
+                "summary": "获取角色拥有的权限树",
+                "parameters": [
+                    {
+                        "description": "角色id",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysRoleGetPermissionTreeReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.SysRolePermissionTreeResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/role/page_query": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "分页查询角色",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "角色管理"
+                ],
+                "summary": "分页查询角色",
+                "parameters": [
+                    {
+                        "description": "角色筛选条件",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysRolePageQueryReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/definitions/api.PageData"
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "List": {
+                                                            "$ref": "#/definitions/models.SysRole"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/role/unbind_users": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "取消角色关联用户，取消后用户不再拥有该角色",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "角色管理"
+                ],
+                "summary": "取消授权角色给用户",
+                "parameters": [
+                    {
+                        "description": "需要解绑的角色id和用户id数组",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysRoleUnbindUsersReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/role/update": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "根据id修改角色信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "角色管理"
+                ],
+                "summary": "修改角色",
+                "parameters": [
+                    {
+                        "description": "角色信息",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysRoleUpdateReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/sms/page_query": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "分页查询短信记录",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "短信管理"
+                ],
+                "summary": "分页查询短信记录",
+                "parameters": [
+                    {
+                        "description": "短信记录筛选条件",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysSmsLogPageQueryReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/definitions/api.PageData"
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "List": {
+                                                            "$ref": "#/definitions/models.SysSmsLog"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/sms/send": {
+            "post": {
+                "description": "发送短信",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "短信管理"
+                ],
+                "summary": "发送短信",
+                "parameters": [
+                    {
+                        "description": "手机号和发送场景",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysSmsSendReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/sms/send_to_myself": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "发送短信(登录后)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "短信管理"
+                ],
+                "summary": "发送短信(登录后)",
+                "parameters": [
+                    {
+                        "description": "发送场景",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysSmsSendToMyselfReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/add": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "添加用户",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "添加用户",
+                "parameters": [
+                    {
+                        "description": "用户信息",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserInsertReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.SysUserAddResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/bind_email": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "绑定邮箱",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "绑定邮箱",
+                "parameters": [
+                    {
+                        "description": "邮箱和邮箱验证码",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserBindEmailReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/bind_mfa_device": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "绑定多因素认证设备",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "绑定多因素认证设备",
+                "parameters": [
+                    {
+                        "description": "mfa信息",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserBindMFAReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.SysUserBindMFAKeyResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/bind_phone": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "绑定手机",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "绑定手机",
+                "parameters": [
+                    {
+                        "description": "手机号和短信验证码",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserBindPhoneReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/bind_wechat": {
+            "get": {
+                "description": "微信授权重定向",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "绑定微信",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.SysUserGetOAuth2UrlResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/change_password": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "更新密码（无需旧密码，但是需要先进行身份验证）",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "更新密码（无需旧密码，但是需要先进行身份验证）",
+                "parameters": [
+                    {
+                        "description": "手机号和验证码",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserChangePasswordReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/check_identity": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "身份验证",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "身份验证",
+                "parameters": [
+                    {
+                        "description": "验证方式和验证码",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserCheckIdentityReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/generate_mfa_device": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "生成多因素认证密钥",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "生成多因素认证密钥",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.SysUserGenerateMFAKeyResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/get_by_id": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "根据id获取用户信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "根据id获取用户信息",
+                "parameters": [
+                    {
+                        "description": "用户id",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserGetReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.SysUser"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/get_oauth2_url": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "获取绑定微信的授权链接",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "获取绑定微信的授权链接",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.SysUserGetOAuth2UrlResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/get_personal_info": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "获取个人信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "获取个人信息",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.SysUserPersonalInfoResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/get_wechat_login_result": {
+            "get": {
+                "description": "获取微信登录结果",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "获取微信登录结果",
+                "parameters": [
+                    {
+                        "description": "登录id",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserGetWxLoginResultReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.SysUserGetOAuth2UrlResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/get_wechat_login_url": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "获取微信登录链接",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "获取微信登录链接",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.SysUserGetWxLoginUrlResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/login_by_password": {
+            "post": {
+                "description": "账号密码登录",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "账号密码登录",
+                "parameters": [
+                    {
+                        "description": "账号密码",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserLoginByPasswordReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.SysUserLoginResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/login_by_phone": {
+            "post": {
+                "description": "手机号登录",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "手机号登录",
+                "parameters": [
+                    {
+                        "description": "手机号和验证码",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserLoginByPhoneReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.SysUserLoginResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/login_by_wechat": {
+            "get": {
+                "description": "微信授权重定向",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "微信登录",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.SysUserGetOAuth2UrlResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/logout": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "退出登录",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "退出登录",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/page_query": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "分页查询用户",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "分页查询用户",
+                "parameters": [
+                    {
+                        "description": "用户筛选条件",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserPageQueryReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/definitions/api.PageData"
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "List": {
+                                                            "$ref": "#/definitions/models.SysUser"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/perfect_info": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "完善基本信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "完善基本信息",
+                "parameters": [
+                    {
+                        "description": "用户基本信息",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserPerfectInfoReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/reset_password": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "重置密码",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "重置密码",
+                "parameters": [
+                    {
+                        "description": "用户ID",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserResetPasswordReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/send_verify_email": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "发送验证邮件",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "发送验证邮件",
+                "parameters": [
+                    {
+                        "description": "邮箱",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserSendVerifyEmailReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/should_check_identity": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "当前操作是否需要进行身份验证",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "当前操作是否需要进行身份验证",
+                "parameters": [
+                    {
+                        "description": "操作",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserShouldCheckIdentityReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.SysUserShouldCheckIdentityResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/switch_enable_mfa": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "切换是否开启MFA",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "切换是否开启MFA",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/unbind_mfa_device": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "解绑多因素认证设备",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "解绑多因素认证设备",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/unbind_wechat": {
+            "get": {
+                "description": "解绑微信",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "解绑微信",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/update_password": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "更新密码（需要旧密码）",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "更新密码（需要旧密码）",
+                "parameters": [
+                    {
+                        "description": "手机号和验证码",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserUpdatePasswordReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sys/user/update_status": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "修改用户状态",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "修改用户状态",
+                "parameters": [
+                    {
+                        "description": "用户id和状态",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SysUserUpdateStatusReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/wx/authorizer/authorize/redirect": {
+            "get": {
+                "description": "获取auth_code",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "授权公众号管理"
+                ],
+                "summary": "授权回调",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/wx/authorizer/create_kf_account": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "为公众号创建客服账号",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "授权公众号管理"
+                ],
+                "summary": "创建客服账号",
+                "parameters": [
+                    {
+                        "description": "客服账号和昵称",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.KfAccountCreateReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/wx/authorizer/delete_kf_account": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "删除客服账号",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "授权公众号管理"
+                ],
+                "summary": "删除客服账号",
+                "parameters": [
+                    {
+                        "description": "公众号appId",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.KfAccountDeleteReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/wx/authorizer/delete_menu": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "清空菜单",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "授权公众号管理"
+                ],
+                "summary": "清空菜单",
+                "parameters": [
+                    {
+                        "description": "公众号appId",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.MenuClearReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/wx/authorizer/get_all_kf_accounts": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "获取公众号的所有客服账号",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "授权公众号管理"
+                ],
+                "summary": "获取公众号的所有客服账号",
+                "parameters": [
+                    {
+                        "description": "公众号appId",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.KfAccountGetAllReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/wx/authorizer/get_authorize_url": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "获取授权链接，微信扫码访问该连接，会跳转到选择公众号授权给第三方平台页面",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "授权公众号管理"
+                ],
+                "summary": "获取公众号授权连接",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.GetAuthorizeUrlResp"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/wx/authorizer/get_menu": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "获取菜单",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "授权公众号管理"
+                ],
+                "summary": "获取菜单",
+                "parameters": [
+                    {
+                        "description": "公众号appId",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.MenuClearReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/wx/authorizer/page_query": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "分页查询授权公众号",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "授权公众号管理"
+                ],
+                "summary": "分页查询授权公众号",
+                "parameters": [
+                    {
+                        "description": "授权公众号筛选条件",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.WxAuthorizerPageQueryReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/api.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/definitions/api.PageData"
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "List": {
+                                                            "$ref": "#/definitions/models.WxAuthorizer"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/wx/authorizer/set_default_kf_account": {
+            "post": {
+                "security": [
+                    {
+                        "RequireLogin": []
+                    }
+                ],
+                "description": "设置默认的客服账号（使用该账号给用户发送消息）",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "授权公众号管理"
+                ],
+                "summary": "设置默认的客服账号（使用该账号给用户发送消息）",
+                "parameters": [
+                    {
+                        "description": "公众号appId",
+                        "name": "param",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.KfAccountSetDefaultReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/wx/authorizer/sync_info": {
+            "post": {
+                "description": "同步授权方信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "授权公众号管理"
+                ],
+                "summary": "同步授权方信息",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "api.PageData": {
+            "type": "object",
+            "properties": {
+                "list": {},
+                "pageNum": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "api.Response": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "data": {},
+                "detail": {
+                    "type": "string"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "requestId": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.Base64ImageUploadReq": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.GetAuthorizeUrlResp": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.ImageUrlUploadReq": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.KfAccountCreateReq": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string"
+                },
+                "appId": {
+                    "type": "string"
+                },
+                "nickname": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.KfAccountDeleteReq": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string"
+                },
+                "appId": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.KfAccountGetAllReq": {
+            "type": "object",
+            "properties": {
+                "appId": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.KfAccountSetDefaultReq": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string"
+                },
+                "appId": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.MenuClearReq": {
+            "type": "object",
+            "properties": {
+                "appId": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysConfigAddReq": {
+            "type": "object",
+            "properties": {
+                "ValueType": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysConfigDeleteReq": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                }
+            }
+        },
+        "dto.SysConfigLogPageQueryReq": {
+            "type": "object",
+            "properties": {
+                "configId": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "pageNum": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.SysConfigPageQueryReq": {
+            "type": "object",
+            "properties": {
+                "idOrder": {
+                    "type": "string"
+                },
+                "keyword": {
+                    "type": "string"
+                },
+                "pageNum": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.SysConfigUpdateReq": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysDictAddReq": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysDictDeleteReq": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.SysDictGetItemsReq": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysDictGetItemsResp": {
+            "type": "object",
+            "properties": {
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.SysDictItem"
+                    }
+                }
+            }
+        },
+        "dto.SysDictItemAddReq": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "dictName": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
+                "itemLabel": {
+                    "type": "string"
+                },
+                "itemValue": {
+                    "type": "string"
+                },
+                "sort": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.SysDictItemUpdateReq": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
+                "itemLabel": {
+                    "type": "string"
+                },
+                "itemValue": {
+                    "type": "string"
+                },
+                "sort": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.SysDictPageQueryReq": {
+            "type": "object",
+            "properties": {
+                "idOrder": {
+                    "type": "string"
+                },
+                "keyword": {
+                    "type": "string"
+                },
+                "pageNum": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.SysDictUpdateReq": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.SysPermissionAddReq": {
+            "type": "object",
+            "properties": {
+                "anon": {
+                    "type": "boolean"
+                },
+                "auth": {
+                    "type": "boolean"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parentId": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysPermissionBatchAddReq": {
+            "type": "object",
+            "properties": {
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.SysPermissionAddReq"
+                    }
+                }
+            }
+        },
+        "dto.SysPermissionDeleteReq": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                }
+            }
+        },
+        "dto.SysPermissionImportReq": {
+            "type": "object",
+            "properties": {
+                "anon": {
+                    "type": "boolean"
+                },
+                "auth": {
+                    "type": "boolean"
+                },
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.SysPermissionImportReq"
+                    }
+                },
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parentId": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysPermissionPageQueryReq": {
+            "type": "object",
+            "properties": {
+                "anon": {
+                    "type": "boolean"
+                },
+                "auth": {
+                    "type": "boolean"
+                },
+                "idOrder": {
+                    "type": "string"
+                },
+                "keyword": {
+                    "type": "string"
+                },
+                "pageNum": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysPermissionTree": {
+            "type": "object",
+            "properties": {
+                "anon": {
+                    "type": "boolean"
+                },
+                "auth": {
+                    "type": "boolean"
+                },
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.SysPermissionTree"
+                    }
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "key": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parentId": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "updatedBy": {
+                    "type": "string",
+                    "example": "0"
+                }
+            }
+        },
+        "dto.SysPermissionUpdateReq": {
+            "type": "object",
+            "properties": {
+                "anon": {
+                    "type": "boolean"
+                },
+                "auth": {
+                    "type": "boolean"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parentId": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysRoleAddReq": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysRoleBindPermissionsReq": {
+            "type": "object",
+            "properties": {
+                "permissionIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "roleId": {
+                    "type": "string",
+                    "example": "0"
+                }
+            }
+        },
+        "dto.SysRoleDeleteReq": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                }
+            }
+        },
+        "dto.SysRoleGetByNameReq": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysRoleGetPermissionTreeReq": {
+            "type": "object",
+            "properties": {
+                "roleId": {
+                    "type": "string",
+                    "example": "0"
+                }
+            }
+        },
+        "dto.SysRolePageQueryReq": {
+            "type": "object",
+            "properties": {
+                "idOrder": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "pageNum": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.SysRolePermissionTreeResp": {
+            "type": "object",
+            "properties": {
+                "ownPermissionIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "permissionTree": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.SysPermissionTree"
+                    }
+                }
+            }
+        },
+        "dto.SysRoleUnbindUsersReq": {
+            "type": "object",
+            "properties": {
+                "roleId": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "userIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "dto.SysRoleUpdateReq": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                }
+            }
+        },
+        "dto.SysSmsLogPageQueryReq": {
+            "type": "object",
+            "properties": {
+                "createdAtEnd": {
+                    "type": "string"
+                },
+                "createdAtStart": {
+                    "type": "string"
+                },
+                "idOrder": {
+                    "type": "string"
+                },
+                "pageNum": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "templateId": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysSmsSendReq": {
+            "type": "object",
+            "properties": {
+                "phone": {
+                    "type": "string"
+                },
+                "scene": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysSmsSendToMyselfReq": {
+            "type": "object",
+            "properties": {
+                "scene": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserAddResp": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "initPassword": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserBindEmailReq": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserBindMFAKeyResp": {
+            "type": "object",
+            "properties": {
+                "recoverCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserBindMFAReq": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "enableMFA": {
+                    "type": "boolean"
+                },
+                "secret": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserBindPhoneReq": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserChangePasswordReq": {
+            "type": "object",
+            "properties": {
+                "newPassword": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserCheckIdentityReq": {
+            "type": "object",
+            "properties": {
+                "checkType": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "operation": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserGenerateMFAKeyResp": {
+            "type": "object",
+            "properties": {
+                "secret": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserGetOAuth2UrlResp": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserGetReq": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                }
+            }
+        },
+        "dto.SysUserGetWxLoginResultReq": {
+            "type": "object",
+            "properties": {
+                "state": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserGetWxLoginUrlResp": {
+            "type": "object",
+            "properties": {
+                "state": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserInsertReq": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "nickname": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "realName": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserLoginByPasswordReq": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserLoginByPhoneReq": {
+            "type": "object",
+            "properties": {
+                "phone": {
+                    "type": "string"
+                },
+                "smsCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserLoginResp": {
+            "type": "object",
+            "properties": {
+                "expireTimeSeconds": {
+                    "type": "integer"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserPageQueryReq": {
+            "type": "object",
+            "properties": {
+                "excludeRoleId": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "idOrder": {
+                    "type": "string"
+                },
+                "keyword": {
+                    "type": "string"
+                },
+                "nickname": {
+                    "type": "string"
+                },
+                "pageNum": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "realName": {
+                    "type": "string"
+                },
+                "roleId": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserPerfectInfoReq": {
+            "type": "object",
+            "properties": {
+                "avatar": {
+                    "type": "string"
+                },
+                "nickname": {
+                    "type": "string"
+                },
+                "wechat": {
+                    "type": "string"
+                },
+                "wechatNickname": {
+                    "type": "string"
+                },
+                "wechatQrCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserPersonalInfoResp": {
+            "type": "object",
+            "properties": {
+                "permissions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "user": {
+                    "$ref": "#/definitions/models.SysUser"
+                }
+            }
+        },
+        "dto.SysUserResetPasswordReq": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                }
+            }
+        },
+        "dto.SysUserSendVerifyEmailReq": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "scene": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserShouldCheckIdentityReq": {
+            "type": "object",
+            "properties": {
+                "operation": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserShouldCheckIdentityResp": {
+            "type": "object",
+            "properties": {
+                "checkTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "defaultCheckType": {
+                    "type": "string"
+                },
+                "shouldCheck": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "dto.SysUserUpdatePasswordReq": {
+            "type": "object",
+            "properties": {
+                "newPassword": {
+                    "type": "string"
+                },
+                "oldPassword": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SysUserUpdateStatusReq": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.UploadFileResp": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.WxAuthorizerPageQueryReq": {
+            "type": "object",
+            "properties": {
+                "keyword": {
+                    "type": "string"
+                },
+                "pageNum": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.SysConfig": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "updatedBy": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "value": {
+                    "type": "string"
+                },
+                "valueType": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SysConfigLog": {
+            "type": "object",
+            "properties": {
+                "configId": {
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "newValue": {
+                    "type": "string"
+                },
+                "oldValue": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SysDict": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "del": {
+                    "type": "boolean"
+                },
+                "deletedAt": {
+                    "type": "string"
+                },
+                "deletedBy": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "updatedBy": {
+                    "type": "string",
+                    "example": "0"
+                }
+            }
+        },
+        "models.SysDictItem": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "dictName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
+                "itemLabel": {
+                    "type": "string"
+                },
+                "itemValue": {
+                    "type": "string"
+                },
+                "sort": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "updatedBy": {
+                    "type": "string",
+                    "example": "0"
+                }
+            }
+        },
+        "models.SysPermission": {
+            "type": "object",
+            "properties": {
+                "anon": {
+                    "type": "boolean"
+                },
+                "auth": {
+                    "type": "boolean"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parentId": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "updatedBy": {
+                    "type": "string",
+                    "example": "0"
+                }
+            }
+        },
+        "models.SysRole": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "updatedBy": {
+                    "type": "string",
+                    "example": "0"
+                }
+            }
+        },
+        "models.SysSmsLog": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "remark": {
+                    "type": "string"
+                },
+                "scene": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "templateCode": {
+                    "type": "string"
+                },
+                "vendor": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SysUser": {
+            "type": "object",
+            "properties": {
+                "avatar": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "enableMFA": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "isBindMfaDevice": {
+                    "type": "boolean"
+                },
+                "lastLoginIp": {
+                    "type": "string"
+                },
+                "lastLoginTime": {
+                    "type": "string"
+                },
+                "nickname": {
+                    "type": "string"
+                },
+                "openId": {
+                    "type": "string"
+                },
+                "passwordResetTime": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "realName": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "superAdmin": {
+                    "type": "boolean"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "updatedBy": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "wechat": {
+                    "type": "string"
+                },
+                "wechatNickname": {
+                    "type": "string"
+                },
+                "wechatQrCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.WxAuthorizer": {
+            "type": "object",
+            "properties": {
+                "authorizerAppid": {
+                    "type": "string"
+                },
+                "componentAppid": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "defaultKfAccount": {
+                    "type": "string"
+                },
+                "headImg": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "nickName": {
+                    "type": "string"
+                },
+                "principalName": {
+                    "type": "string"
+                },
+                "qrcodeUrl": {
+                    "type": "string"
+                },
+                "serviceType": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "updatedBy": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "userName": {
+                    "type": "string"
+                },
+                "verifyType": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "RequireLogin": {
+            "type": "apiKey",
+            "name": "token",
+            "in": "header"
+        }
+    }
+}

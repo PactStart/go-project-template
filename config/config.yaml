@@ -1,0 +1,71 @@
+env:
+  profiles: dev
+mysql:
+  address:
+    - 127.0.0.1
+  username: root
+  password: 123456
+  database: orderin
+  maxOpenConn: 10
+  maxIdleConn: 5
+  MaxLifeTime: 60
+  logLevel: 4
+  slowThreshold: 500
+redis:
+  address: [127.0.0.1:6379]
+  password: 123456
+  db: 0
+  poolSize: 10
+fileStore:
+  driverType: "AliYunOSS"
+  endpoint: "oss-cn-shenzhen.aliyuncs.com"
+  accessKeyId: "xx"
+  accessKeySecret: "xx"
+  bucketName: "xxx-cdn"
+  domain: https://cdn.xxx.com
+sms:
+  driverType: "AliyunDysms"
+  endpoint: "dysmsapi.aliyuncs.com"
+  accessKeyId: "xx"
+  accessKeySecret: "xx"
+mail:
+  driverType: "QQEmail"
+  from: "xx <xx@qq.com>"
+  account: "xx@qq.com"
+  password: "xx"
+  smtpHost: "smtp.qq.com"
+  smtpPort: 587
+wxOpenPlatform:
+  appId: xxx
+  appSecret: xxx
+  messageToken: xxx
+  messageAesKey: xxx
+wxOfficialAccount:
+  appId: xxx
+log:
+  storageLocation: ./logs/
+  rotationTime: 24
+  remainRotationCount: 2
+  remainLogLevel: 6
+  isStdout: true
+  isJson: false
+  withStack: false
+prometheus:
+  enable: true
+  prometheusUrl: "https://prometheus.xxx.com"
+  adminPrometheusPort: [20000]
+  appPrometheusPort: [20001]
+secret: xxx
+tokenPolicy:
+  expire: 90
+superAdmin:
+  username: "leidi"
+  password: "leidi@2024"
+  realName: "Rex.Lei"
+  phone: "15002080164"
+adminApi:
+  port: [ 10000 ]
+  listenIP: 0.0.0.0
+appApi:
+  port: [ 10001 ]
+  listenIP: 0.0.0.0

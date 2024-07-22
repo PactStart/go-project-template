@@ -1,0 +1,87 @@
+basePath: /api/v1
+definitions:
+  api.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      detail:
+        type: string
+      msg:
+        type: string
+      requestId:
+        type: string
+    type: object
+  dto.Base64ImageUploadReq:
+    properties:
+      image:
+        type: string
+    type: object
+  dto.UploadFileResp:
+    properties:
+      url:
+        type: string
+    type: object
+host: 127.0.0.1:10002
+info:
+  contact:
+    email: xxx@qq.com
+    name: xxx
+    url: http://xxx.com
+  description: xxx H5 API文档
+  title: H5 API
+  version: 1.0.0
+paths:
+  /file/upload_base64_image:
+    post:
+      consumes:
+      - application/json
+      description: 上传Base64格式图片
+      parameters:
+      - description: base64格式图片
+        in: body
+        name: param
+        schema:
+          $ref: '#/definitions/dto.Base64ImageUploadReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.UploadFileResp'
+              type: object
+      summary: 上传Base64格式图片
+      tags:
+      - 文件上传
+  /file/upload_image:
+    post:
+      consumes:
+      - multipart/form-data
+      description: 上传图片
+      parameters:
+      - description: 文件
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.UploadFileResp'
+              type: object
+      summary: 上传图片
+      tags:
+      - 文件上传
+swagger: "2.0"
